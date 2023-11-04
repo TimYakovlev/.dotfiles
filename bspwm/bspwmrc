@@ -1,0 +1,40 @@
+#! /bin/sh
+sxhkd &
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+
+bspc monitor -d 1 2 3 4 5
+
+bspc config border_width         2
+bspc config window_gap           3
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config single_monocle 			 true
+bspc config ignore_ewmh_focus true
+
+bspc rule -a Google-chrome desktop='^1' follow=
+bspc rule -a Thunar desktop='^3'
+
+bspc rule -a mpv state=floating
+
+#bspc config normal_border_color "#0A1F32"
+#bspc config active_border_color "#2D384A"
+#bspc config focused_border_color "#fffb00"
+
+# bspc config normal_border_color "#808080"
+
+# bspc config normal_border_color "#2D384A"
+
+bspc config normal_border_color "#454545"
+
+# bspc config normal_border_color "#585b70"
+bspc config focused_border_color "#b4befe"
+
+bspc config focus_follows_pointer true
+bspc config pointer_modifier    super
+
+setxkbmap -option grp:alt_shift_toggle us,ru &
+
+$HOME/.config/polybar/launch.sh

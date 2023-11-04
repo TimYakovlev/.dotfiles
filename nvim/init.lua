@@ -114,6 +114,11 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+local colors = {
+  -- fg = "#E4E4E4",
+  -- bg = "#181818",
+}
+
 require('lazy').setup({
 --  { 'ramojus/mellifluous.nvim',
 --  opts = {
@@ -183,23 +188,39 @@ require('lazy').setup({
   { 'mbbill/undotree' },
   { 'nvim-lualine/lualine.nvim',
   opts = {
-   options = {
-     icons_enabled = true,
-     theme = 'auto',
-     section_separators = { left = '', right = ''},
-     component_separators = { left = '' , right = '' },
+    options = {
+    icons_enabled = true,
+    colored = false,
+    -- always_visible = true,
+    section_separators = { left = '', right = ''},
+    component_separators = { left = '' , right = '' },
+        theme = {
+           normal = {
+             a = { fg = colors.fg, bg = colors.bg },
+             b = { fg = colors.fg, bg = colors.bg },
+             c = { fg = colors.fg, bg = colors.bg },
+            },
+            insert = { a = { fg = colors.fg, bg = colors.bg }, b = { fg = colors.fg, bg = colors.bg } },
+            visual = { a = { fg = colors.fg, bg = colors.bg }, b = { fg = colors.fg, bg = colors.bg } },
+            command = { a = { fg = colors.fg, bg = colors.bg }, b = { fg = colors.fg, bg = colors.bg } },
+            replace = { a = { fg = colors.fg, bg = colors.bg }, b = { fg = colors.fg, bg = colors.bg } },
+            inactive = {
+              a = { bg = colors.fg, fg = colors.bg },
+              b = { bg = colors.fg, fg = colors.bg },
+              c = { bg = colors.fg, fg = colors.bg },
+            },
+          },
+        },
+        sections = {
+          lualine_a = {'mode'},
+          lualine_b = {'branch', {'filename', path = 0 }},
+          lualine_c = {'diff'},
+          lualine_x = {'diagnostics'},
+          lualine_y = {},
+          lualine_z = {'location', 'progress' },
+        },
   },
-  sections = {
-    lualine_a = {{ 'filename', path = 0} },
-    lualine_b = {'branch', 'diff'},
-    lualine_c = {},
-    lualine_x = {'diagnostics'},
-    lualine_y = {'progress', 'location'},
-    lualine_z = {}
-  }
-}
 },
-
 
 
 })
@@ -271,5 +292,6 @@ vim.keymap.set("n", "<F5>", vim.cmd.UndotreeToggle)
 
 
 vim.cmd.colorscheme('gruber-darker')
+
 
 

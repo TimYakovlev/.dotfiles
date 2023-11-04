@@ -1,0 +1,67 @@
+set previewer ctpv
+set cleaner ctpvclear
+&ctpv -s $id
+&ctpvquit $id
+
+set hidden false
+set ignorecase true
+set nopreview
+set ratios 1
+set period 1
+set scrolloff 10
+set icons true
+
+cmd toggle_preview %{{
+    if [ "$lf_preview" = "true" ]; then
+        lf -remote "send $id :set ratios 1:5;	set preview false"
+    else
+        lf -remote "send $id :set ratios 1:1;	set preview true"
+    fi
+}}
+
+cmd select-files &{{
+    get_files() {
+        if [ "$lf_hidden" = 'false' ]; then
+            find "$PWD" -mindepth 1 -maxdepth 1 -type f -not -name '.*' -print0
+        else
+            find "$PWD" -mindepth 1 -maxdepth 1 -type f -print0
+        fi |
+        xargs -0 printf ' %q'
+    }
+
+    lf -remote "send $id :unselect; toggle $(get_files)"
+}}
+
+cmd follow_link %{{
+  lf -remote "send ${id} select '$(readlink $f)'"
+}}
+
+cmd trash ${{
+  files=$(printf "$fx" | tr '\n' ';')
+  while [ "$files" ]; do
+    file=${files%%;*}
+
+    trash-put "$(basename "$file")"
+    if [ "$files" = "$file" ]; then
+      files=''
+    else
+      files="${files#*;}"
+    fi
+  done
+}}
+
+cmd open-with-gui &$@ $fx
+cmd open-with-cli $$@ $fx
+map zp toggle_preview
+map gl follow_link
+map a select-files
+map <delete> trash
+map . set hidden!
+map gd cd ~/Downloads/
+map gs cd /mnt/media/Storage/
+map A :rename; cmd-end
+map o push :open-with-cli<space>
+map O push :open-with-gui<space>
+
+
+

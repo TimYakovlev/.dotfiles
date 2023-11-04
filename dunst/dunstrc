@@ -1,0 +1,20 @@
+[global]
+frame_color = "#D8DEE9"
+separator_color = frame
+frame_width = 1
+frame_color = "#232323"
+font = RobotoMono Nerd Font Mono 10
+corner_radius = 5
+
+[urgency_low]
+background = "#585b70"
+foreground = "#D8DEE9"
+
+[urgency_normal]
+background = "#585b70"
+foreground = "#D8DEE9"
+
+[urgency_critical]
+background = "#585b70"
+foreground = "#D8DEE9"
+frame_color = "#EF9F76"

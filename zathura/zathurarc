@@ -1,0 +1,11 @@
+set window-title-basename "true"
+set window-title-page "true"
+set selection-clipboard "clipboard"
+set pages-per-row 1
+set scroll-page-aware "true"
+set smooth-scroll "true"
+set scroll-full-overlap 0.01
+set scroll-step 100
+set guioptions ""
+set adjust-open "width"
+
