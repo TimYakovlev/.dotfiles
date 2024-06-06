@@ -10,6 +10,7 @@ set ratios 1
 set period 1
 set scrolloff 10
 set icons true
+set relativenumber true
 
 cmd toggle_preview %{{
     if [ "$lf_preview" = "true" ]; then

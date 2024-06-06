@@ -18,7 +18,7 @@ vim.opt.signcolumn = "yes:1"
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.updatetime = 1000
 vim.opt.undofile = true
-vim.opt.showmode = false
+vim.opt.showmode = true
 vim.opt.wildmode = "longest:full,full"
 vim.opt.formatoptions = "jcroqlnt"
 vim.opt.clipboard = "unnamedplus"
@@ -42,7 +42,7 @@ vim.g.netrw_winsize = 40
 vim.g.mapleader = " "
 
 vim.keymap.set("n", "<leader>q", "<cmd>q<cr>")
-vim.keymap.set("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>")
+-- vim.keymap.set("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>")
 vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("n", "<leader><C-s>", "<cmd>w<cr>")
@@ -128,8 +128,8 @@ require('lazy').setup({
 --  },
 --   },
 -- },
---   { 'nyoom-engineering/oxocarbon.nvim'
--- },
+ --  { 'nyoom-engineering/oxocarbon.nvim'
+ -- },
 --   { 'sainnhe/gruvbox-material' },
   { 'blazkowolf/gruber-darker.nvim',
   opts = {
@@ -176,12 +176,12 @@ require('lazy').setup({
   { 'nvim-telescope/telescope.nvim', tag = '0.1.2',
     dependencies = { 
     'nvim-lua/plenary.nvim',
-    { 'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'make',
-    config = function()
-      require('telescope').load_extension('fzf')
-    end,
-  },
+   { 'nvim-telescope/telescope-fzf-native.nvim',
+   build = 'make',
+   config = function()
+     require('telescope').load_extension('fzf')
+   end,
+ },
 },
 },
   { 'numToStr/Comment.nvim', opts = {} },
@@ -212,16 +212,15 @@ require('lazy').setup({
           },
         },
         sections = {
-          lualine_a = {'mode'},
+          lualine_a = {' '},
           lualine_b = {'branch', {'filename', path = 0 }},
           lualine_c = {'diff'},
           lualine_x = {'diagnostics'},
           lualine_y = {},
-          lualine_z = {'location', 'progress' },
+          lualine_z = {'location' },
         },
   },
 },
-
 
 })
 
@@ -230,7 +229,6 @@ name = 'minimal',
 })
 
 lsp.on_attach(function(client, bufnr)
-
 
 
 vim.keymap.set('n', '<leader>rn',vim.lsp.buf.rename, {buffer = true})
@@ -292,6 +290,3 @@ vim.keymap.set("n", "<F5>", vim.cmd.UndotreeToggle)
 
 
 vim.cmd.colorscheme('gruber-darker')
-
-
-
