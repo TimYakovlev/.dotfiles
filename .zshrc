@@ -11,7 +11,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="lambda"
 # ZSH_THEME="minimal"
 # ZSH_THEME="nicoulaj"
-ZSH_THEME="sammy"
+# ZSH_THEME="sammy"
+# ZSH_THEME="itchy"
+ZSH_THEME="sobole"
 # ZSH_THEME="simple"
 
 # Set list of themes to pick from when loading at random
@@ -74,7 +76,7 @@ ZSH_THEME="sammy"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-vi-mode zsh-autosuggestions asdf)
+plugins=(git zsh-vi-mode zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,11 +108,11 @@ VISUAL=$EDITOR
 # Example aliases
 alias zshcfg="nvim ~/.zshrc"
 alias nvimcfg="nvim ~/.config/nvim/init.lua"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias i3cfg="nvim ~/.config/i3/config"
 alias la='ls -A'
 alias nv='nvim'
 alias lg='lazygit'
-alias lf='lfcd'
+alias bat='batcat'
 
-. "$HOME/.asdf/asdf.sh"
-fpath=(${ASDF_DIR}/completions $fpath)
+source /usr/share/doc/fzf/examples/completion.zsh
+source /usr/share/doc/fzf/examples/key-bindings.zsh

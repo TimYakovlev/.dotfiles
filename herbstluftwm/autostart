@@ -8,29 +8,20 @@ hc() {
 
 hc emit_hook reload
 
-xsetroot -solid '#101010'
+xsetroot -solid '#5A8E3A'
 
 # remove all existing keybindings
 hc keyunbind --all
 
 # keybindings
 # if you have a super key you will be much happier with Mod set to Mod4
-#Mod=Mod1    # Use alt as the main modifier
+# Mod=Mod1    # Use alt as the main modifier
 Mod=Mod4   # Use the super key as the main modifier
 
-hc keybind $Mod-Shift-e quit
+# hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
-hc keybind $Mod-Shift-q close
-hc keybind $Mod-Return spawn "${TERMINAL:-urxvt}" # use your $TERMINAL with xterm as fallback
-hc keybind $Mod-t spawn Thunar --class Thunar
-hc keybind $Mod-Shift-d spawn dmenu_run  -l '4' -nf '#BBBBBB' -nb '#222222' -sb '#005577' -sf '#EEEEEE' -fn 'monospace-15'
-hc keybind $Mod-e spawn "${TERMINAL:-urxvt}" -e 'nvim'
-hc keybind $Mod-o spawn "${TERMINAL:-urxvt}" -e 'lf'
-hc keybind $Mod-Control-Return spawn "${TERMINAL:-urxvt}" -e 'tmux'
-hc keybind $Mod-w spawn chromium --incognito
-hc keybind $Mod-Shift-w spawn chromium
-hc keybind Print spawn scrot '%Y-%m-%d-%H.%M.%S.png' -e 'mv $f ~/Pictures/'
-hc keybind Shift-Print spawn scrot -s '%Y-%m-%d-%H.%M.%S.png' -e 'mv $f ~/Pictures/'
+hc keybind $Mod-Shift-c close
+hc keybind $Mod-Return spawn "${TERMINAL:-xterm}" # use your $TERMINAL with xterm as fallback
 
 # basic movement in tiling and floating mode
 # focusing clients
@@ -55,10 +46,8 @@ hc keybind $Mod-Shift-l     shift right
 
 # splitting frames
 # create an empty frame at the specified direction
-hc keybind $Mod-comma       split   bottom  0.5
-hc keybind $Mod-period       split   right   0.5
-# hc keybind $Mod-u       split   bottom  0.5
-# hc keybind $Mod-o       split   right   0.5
+hc keybind $Mod-u       split   bottom  0.5
+hc keybind $Mod-o       split   right   0.5
 # let the current frame explode into subframes
 hc keybind $Mod-Control-space split explode
 
@@ -74,9 +63,8 @@ hc keybind $Mod-Control-Up      resize up +$resizestep
 hc keybind $Mod-Control-Right   resize right +$resizestep
 
 # tags
-tag_names=( {1..5} )
-tag_keys=( {1..5} 0 )
-hc set default_frame_layout grid
+tag_names=( {1..9} )
+tag_keys=( {1..9} 0 )
 
 hc rename default "${tag_names[0]}" || true
 for i in "${!tag_names[@]}" ; do
@@ -89,17 +77,17 @@ for i in "${!tag_names[@]}" ; do
 done
 
 # cycle through tags
-# hc keybind $Mod-period use_index +1 --skip-visible
-# hc keybind $Mod-comma  use_index -1 --skip-visible
+hc keybind $Mod-period use_index +1 --skip-visible
+hc keybind $Mod-comma  use_index -1 --skip-visible
 
 # layouting
-hc keybind $Mod-q remove
+hc keybind $Mod-r remove
 hc keybind $Mod-s floating toggle
 hc keybind $Mod-f fullscreen toggle
 hc keybind $Mod-Shift-f set_attr clients.focus.floating toggle
-# hc keybind $Mod-Shift-d set_attr clients.focus.decorated toggle
-#hc keybind $Mod-Shift-m set_attr clients.focus.minimized true
-#hc keybind $Mod-Control-m jumpto last-minimized
+hc keybind $Mod-Shift-d set_attr clients.focus.decorated toggle
+hc keybind $Mod-Shift-m set_attr clients.focus.minimized true
+hc keybind $Mod-Control-m jumpto last-minimized
 hc keybind $Mod-p pseudotile toggle
 # The following cycles through the available layouts within a frame, but skips
 # layouts, if the layout change wouldn't affect the actual window positions.
@@ -119,48 +107,58 @@ hc mousebind $Mod-Button3 resize
 hc keybind $Mod-BackSpace   cycle_monitor
 hc keybind $Mod-Tab         cycle_all +1
 hc keybind $Mod-Shift-Tab   cycle_all -1
-# hc keybind $Mod-c cycle
+hc keybind $Mod-c cycle
 hc keybind $Mod-i jumpto urgent
 
 # theme
-# copy inner color to outerhc attr theme.tiling.reset 1
+hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
-hc set frame_border_active_color '#ffffff'
-hc set frame_border_normal_color '#191919'
-hc set frame_bg_normal_color '#262626'
-hc set frame_bg_active_color '#191919'
-hc set frame_border_width 2
-hc set always_show_frame on
+hc set frame_border_active_color '#222222cc'
+hc set frame_border_normal_color '#101010cc'
+hc set frame_bg_normal_color '#565656aa'
+hc set frame_bg_active_color '#345F0Caa'
+hc set frame_border_width 1
+hc set show_frame_decorations 'focused_if_multiple'
 hc set frame_bg_transparent on
-hc set frame_transparent_width 0
-hc set frame_gap 2
+hc set frame_transparent_width 5
+hc set frame_gap 4
 
-hc attr theme.title_height 0
-hc attr theme.padding_top 0
-hc attr theme.active.color '#ffffff'
-hc attr theme.normal.color '#262626'
-hc attr theme.urgent.color #ac8a8c
-hc attr theme.inner_width 0
+hc attr theme.title_height 15
+hc attr theme.title_when always
+hc attr theme.title_font 'Dejavu Sans:pixelsize=12'  # example using Xft
+# hc attr theme.title_font '-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
+hc attr theme.title_depth 3  # space below the title's baseline
+hc attr theme.active.color '#345F0Cef'
+hc attr theme.title_color '#ffffff'
+hc attr theme.normal.color '#323232dd'
+hc attr theme.urgent.color '#7811A1dd'
+hc attr theme.tab_color '#1F1F1Fdd'
+hc attr theme.active.tab_color '#2B4F0Add'
+hc attr theme.active.tab_outer_color '#6C8257dd'
+hc attr theme.active.tab_title_color '#ababab'
+hc attr theme.normal.title_color '#898989'
+hc attr theme.inner_width 1
 hc attr theme.inner_color black
 hc attr theme.border_width 3
-hc attr theme.floating.border_width 3
-hc attr theme.floating.padding_top 0
-hc attr theme.floating.outer_width 3
-hc attr theme.floating.outer_color "#ffffff"
-hc attr theme.active.inner_color '#ffffff'
-hc attr theme.active.outer_color '#ffffff'
-hc attr theme.background_color '#262626'
-
-hc set window_gap 3
-hc set frame_padding 0
-hc set smart_window_surroundings on
-hc set smart_frame_surroundings on
-hc set mouse_recenter_gap 0_color
-hc set focus_follows_mouse true
+hc attr theme.floating.border_width 4
+hc attr theme.floating.outer_width 1
+hc attr theme.floating.outer_color black
+hc attr theme.active.inner_color '#789161'
+hc attr theme.urgent.inner_color '#9A65B0'
+hc attr theme.normal.inner_color '#606060'
+# copy inner color to outer_color
 for state in active urgent normal ; do
     hc substitute C theme.${state}.inner_color \
         attr theme.${state}.outer_color C
 done
+hc attr theme.tiling.outer_width 1
+hc attr theme.background_color '#141414'
+
+hc set window_gap 0
+hc set frame_padding 0
+hc set smart_window_surroundings off
+hc set smart_frame_surroundings on
+hc set mouse_recenter_gap 0
 
 # rules
 hc unrule -F
@@ -171,14 +169,8 @@ hc rule floatplacement=smart
 # give focus to most common terminals
 #hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
-hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on floatplacement=center
+hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
-hc rule class='Pavucontrol' floating=on floatplacement=center
-hc rule class='Chromium' tag='1'
-hc rule class='Thunar' tag='3'
-hc rule class='TelegramDesktop' tag='4'
-hc rule title='lf' floating=on floatplacement=center
-hc rule class='mpv' floating=on floatplacement=center
 hc rule fixedsize floating=on
 
 hc set tree_style '╾│ ├└╼─┐'
@@ -198,7 +190,3 @@ for monitor in $(hc list_monitors | cut -d: -f1) ; do
     # start it on each monitor
     "$panel" "$monitor" &
 done
-
-feh --no-fehbg --bg-fill --image-bg 'black' ~/Pictures/wallpapers/wallhaven-dpqxxg_1920x1080.png
-setxkbmap -layout us,ru
-setxkbmap -option 'grp:alt_shift_toggle'

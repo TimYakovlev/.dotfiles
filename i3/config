@@ -1,15 +1,17 @@
 set $mod Mod4
 
-font pango:Roboto Regular 10
+font pango:Roboto Regular 9
 
 exec --no-startup-id dex-autostart --autostart --environment i3
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id numlockx on
+# exec --no-startup-id numlockx on
 exec --no-startup-id setxkbmap -model pc105 -layout us,ru -option grp:alt_shift_toggle
 exec_always --no-startup-id autotiling
-exec_always feh --no-fehbg --bg-fill --image-bg 'black' ~/Pictures/wallpapers/wallhaven-dpqxxg_1920x1080.png
+# exec_always feh --no-fehbg --bg-fill --image-bg 'black' ~/Pictures/wallpapers/teodor-kuduschiev-SRGib9KboaE-unsplash.jpg
+exec_always feh --no-fehbg --bg-scale --image-bg 'black' ~/Pictures/wallpapers/tak-kei-wong-15IJ-EVetzM-unsplash.jpg
 exec --no-startup-id /usr/bin/dunst
 exec --no-startup-id nm-applet
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id (sleep 5 && xset s off -dpms)&
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
@@ -46,8 +48,10 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-bindsym $mod+bracketright split h
-bindsym $mod+bracketleft split v
+# bindsym $mod+bracketright split h
+# bindsym $mod+bracketleft split v
+bindsym $mod+period split h
+bindsym $mod+comma split v
 
 bindsym $mod+f fullscreen toggle
 
@@ -56,7 +60,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 bindsym $mod+Shift+f floating toggle
-bindsym $mod+space focus mode_toggle
+bindsym $mod+Tab focus mode_toggle
 
 bindsym $mod+a focus parent
 bindsym $mod+d focus child
@@ -66,35 +70,35 @@ set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+# set $ws6 "6"
+# set $ws7 "7"
+# set $ws8 "8"
+# set $ws9 "9"
+# set $ws10 "10"
 
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
 bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
+# bindsym $mod+6 workspace number $ws6
+# bindsym $mod+7 workspace number $ws7
+# bindsym $mod+8 workspace number $ws8
+# bindsym $mod+9 workspace number $ws9
+# bindsym $mod+0 workspace number $ws10
 
-bindsym $mod+Tab workspace back_and_forth
+# bindsym $mod+Tab workspace back_and_forth
 
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3
 bindsym $mod+Shift+4 move container to workspace number $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
+# bindsym $mod+Shift+6 move container to workspace number $ws6
+# bindsym $mod+Shift+7 move container to workspace number $ws7
+# bindsym $mod+Shift+8 move container to workspace number $ws8
+# bindsym $mod+Shift+9 move container to workspace number $ws9
+# bindsym $mod+Shift+0 move container to workspace number $ws10
 
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -128,52 +132,78 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+less gaps inner current plus 5
 bindsym $mod+Shift+greater gaps inner current minus 5
 
-#clas                       border  bground text    indicator   child border                        
-client.focused           #FFFFFF #585b70  #FFFFFF  #282A2E   #FFFFFF
-client.focused_inactive #8C8C8C #4C4C4C #FFFFFF #4C4C4C   #00000000
-client.unfocused        #4C4C4C #222222 #e1e2e3 #292D2E   #00000000
-client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #00000000
+#class                    border   bground  text    indicator   child border
+client.focused            #ffffff  #ffffff  #000000  #000000  #6076f2
+client.focused_inactive   #8C8C8C  #4C4C4C  #FFFFFF  #4C4C4C  #ffffff
+client.unfocused          #161616  #0a0a0a  #666666  #292D2E  #ffffff
+client.placeholder        #000000  #0C0C0C  #FFFFFF  #000000  #ff00ff
 
-client.background       #FFFFFF
+# #class                    border   bground  text    indicator   child border
+# client.focused            #FFFFFF  #585b70  #FFFFFF  #000000 #6076f2
+# client.focused_inactive   #8C8C8C  #4C4C4C  #FFFFFF  #4C4C4C  #ffffff
+# client.unfocused          #4C4C4C  #222222  #e1e2e3  #292D2E  #ffffff
+# client.placeholder        #000000  #0C0C0C  #FFFFFF  #000000  #ff00ff
+
+# client.focused            #FFFFFF  #585b70  #FFFFFF  #282A2E  #FFFFFF
+# client.focused_inactive   #8C8C8C  #4C4C4C  #FFFFFF  #4C4C4C  #00000000
+# client.unfocused          #4C4C4C  #222222  #e1e2e3  #292D2E  #00000000
+# client.placeholder        #000000  #0C0C0C  #FFFFFF  #000000  #00000000
+
+client.background         #FFFFFF
 
 default_border pixel 2
-#gaps inner 5
+# default_border normal 0
+# gaps inner 5
 smart_borders on
 smart_gaps on
+workspace_auto_back_and_forth yes
+title_align center
 
 bindsym --release Print exec scrot '%Y-%m-%d-%T.png' -e 'mv $f ~/Pictures/' && notify-send "Screenshot saved to ~/Pictures/$(date +"%Y-%m-%d-%T")-screenshot.png"
 bindsym --release Shift+Print exec scrot -s '%Y-%m-%d-%T.png' -e 'mv $f ~/Pictures/' && notify-send "Screenshot saved to ~/Pictures/$(date +"%Y-%m-%d-%T")-screenshot.png"
-bindsym $mod+Return exec wezterm
-bindsym $mod+p exec wezterm -e nvim
-bindsym $mod+t exec thunar 
-bindsym $mod+o exec wezterm -e lf
+bindsym $mod+Return exec urxvt
+bindsym $mod+Control+Return exec urxvt -e tmux
+# bindsym $mod+p exec urxvt -e nvim
+bindsym $mod+t exec thunar
+bindsym $mod+o exec urxvt -e lf
+bindsym $mod+Shift+d exec --no-startup-iddmenu_run  -l '4' -nf '#BBBBBB' -nb '#222222' -sb '#6076f2' -sf '#EEEEEE' -fn 'monospace-15'
 
-bindsym $mod+Shift+d exec --no-startup-id rofi -modi drun -show drun \
-		-config ~/.config/rofi/rofidmenu.rasi
+bindsym $mod+bracketleft scratchpad show
+bindsym $mod+bracketright move scratchpad
+bindsym $mod+c move absolute position center
+bindsym $mod+m sticky toggle
+# bindsym $mod+b border pixel 2
+# bindsym $mod+Shift+b border normal
 
 assign [class="Google-chrome"] $ws1
+assign [class="Chromium"] $ws1
+assign [class="firefox"] $ws1
 assign [class="Thunar"] $ws3
 assign [class="Telegram"] $ws4
+assign [class="Zathura"] $ws5
 
-for_window [class="Galculator" instance="galculator"] floating enable
+for_window [class=".*"] title_format "<b>%title</b>"
+for_window [all] title_window_icon on
+for_window [floating] move position center
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
 for_window [window_role="About"] floating enable
-for_window [title="lf" class="wezterm"] floating enable
+# for_window [title="lf" class="URxvt"] floating enable
+for_window [title="lf" class="URxvt"] floating enable resize set 640 480
 for_window [class="mpv"] floating enable center
 
-set $mode_browser Normal[Shift+i], Incognito[i]
+set $mode_browser Chrome: Normal[I], Incognito[i] | Firefox: Normal[o], Private[O]
 mode "$mode_browser" {
-        #bindsym Shift+i exec google-chrome, mode "default"
-        #bindsym i exec google-chrome --incognito, mode "default"
-        bindsym Shift+i exec flatpak run com.google.Chrome, mode "default"
-        bindsym i exec flatpak run com.google.Chrome --incognito, mode "default"
+        bindsym Shift+i exec chromium, mode "default"
+        bindsym i exec chromium --incognito, mode "default"
+        bindsym o exec firefox, mode "default"
+        bindsym Shift+o exec firefox --private-window, mode "default"
 
         bindsym Escape mode "default"
         bindsym Return mode "default"
 }
 bindsym $mod+i mode "$mode_browser"
 
-set $mode_system [L]ogout, [R]eboot, [P]oweroff 
+set $mode_system [L]ogout, [R]eboot, [P]oweroff
 mode "$mode_system" {
         bindsym r exec --no-startup-id systemctl reboot
         bindsym l exit
@@ -185,19 +215,36 @@ mode "$mode_system" {
 }
 bindsym $mod+Pause mode "$mode_system"
 
-bar {
-		font pango: Roboto Regular 12
-		status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	    	position bottom
-
-colors {
-    background #282A2E
-    focused_workspace  #585b70      #585b70     #ffffff
-    inactive_workspace #282A2E      #282A2E	  #808080
-    urgent_workspace   #585b70      #e60053     #ffffff
-}		  
-
-
+mode "CAPS" {
+bindsym Caps_Lock mode "default"
 }
+bindsym Caps_Lock mode "CAPS"
+
+# bar {
+#     font pango: Maple Mono 10
+#     status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#     position bottom
+# colors {
+#     background #282A2E
+#     focused_workspace  #585b70      #585b70     #ffffff
+#     inactive_workspace #282A2E      #282A2E	  #808080
+#     urgent_workspace   #585b70      #e60053     #ffffff
+# }
+# }
 
 
+bar {
+    font pango: RobotoMonoNerdFont 10
+    # status_command ~/.cargo/bin/i3status-rs ~/.config/i3/config.toml
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+colors {
+    background #ffffff
+    statusline #000000
+#                       border|bground|text
+    focused_workspace  #ffffff #ffffff #000000
+    active_workspace   #333333 #5f676a #ffffff
+    inactive_workspace #ffffff #ffffff #666666
+    urgent_workspace   #000000 #000000 #ffffff
+    binding_mode       #ffffff #000000 #ffffff
+}
+}
